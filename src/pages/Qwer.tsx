@@ -7,7 +7,7 @@ interface QwerProps {
 const Qwer: React.FC<QwerProps> = () => {
     return (
         <div>
-            Qwer
+            Qwer6575675665
         </div>
     );
 };
