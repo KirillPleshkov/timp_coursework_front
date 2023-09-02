@@ -1,15 +1,14 @@
 import React from 'react';
+import { Navbar } from '../components/UI/Navbar';
 
-interface HomeProps {
-    
-}
 
-const Home: React.FC<HomeProps> = () => {
-    return (
-        <div>
-            Home
-        </div>
-    );
+const Home: React.FC = () => {
+  return (
+    <div>
+      <Navbar/>
+      Home
+    </div>
+  );
 };
 
 export default Home;
