@@ -1,60 +1,53 @@
-import React from 'react';
-import { useInput } from '../hooks/useInput';
-import { Link } from 'react-router-dom';
-
-const categories = [
-  { name: 'Аллергия', id: 0 },
-  { name: 'Пищеварительная система', id: 1 },
-  { name: 'Гематология', id: 2 }
-]
-
-const products = [
-  { name: 'Уголь активированный', id: 0 },
-  { name: 'Парацетамол', id: 1 },
-  { name: 'Ношпа', id: 2 }
-]
+import React from "react";
+import { useInput } from "../hooks/useInput";
+import { Link } from "react-router-dom";
+import { useSearchCategories } from "../hooks/useSearchCategories";
+import { useSearchProducts } from "../hooks/useSearchProducts";
 
 const Search: React.FC = () => {
+  const [inputValue, changeHandler] = useInput();
 
-  const [inputValue, changeHandler] = useInput()
+  const { categoriesData, categoriesError, categoriesIsLoading } =
+    useSearchCategories(inputValue);
+
+  const { productsData, productsError, productsIsLoading } =
+    useSearchProducts(inputValue);
 
   return (
     <div>
-      <input
-        type='text'
-        value={inputValue}
-        onChange={changeHandler}
-      />
+      <input type="text" value={inputValue} onChange={changeHandler} />
 
-      <div style={{ position: 'absolute' }}>
+      {inputValue && (
+        <div style={{ position: "absolute", backgroundColor: "gray" }}>
+          <div>Категории</div>
+          {categoriesIsLoading ? (
+            <div>Загрузка...</div>
+          ) : (
+            <ul>
+              {!categoriesError &&
+                categoriesData?.map((elem, index) => (
+                  <li key={index}>
+                    <Link to={`/category/${elem.id}`}>{elem.name}</Link>
+                  </li>
+                ))}
+            </ul>
+          )}
 
-        <div>Категории</div>
-        <ul>
-          {
-            categories.map((elem) => (
-              <li>
-                <Link to={`/category/${elem.id}`} >
-                  {elem.name}
-                </Link>
-              </li>
-            ))
-          }
-        </ul>
-
-        <div>Товары</div>
-        <ul>
-          {
-            products.map((elem) => (
-              <li>
-                <Link to={`/product/${elem.id}`} >
-                  {elem.name}
-                </Link>
-              </li>
-            ))
-          }
-        </ul>
-
-      </div>
+          <div>Товары</div>
+          {productsIsLoading ? (
+            <div>Загрузка...</div>
+          ) : (
+            <ul>
+              {!productsError &&
+                productsData?.map((elem, index) => (
+                  <li key={index}>
+                    <Link to={`/product/${elem.id}`}>{elem.name}</Link>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
+      )}
     </div>
   );
 };
