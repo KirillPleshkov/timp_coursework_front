@@ -1,31 +1,29 @@
 import React from "react";
 import { useInput } from "../hooks/useInput";
 import { Link } from "react-router-dom";
-import { useSearchCategories } from "../hooks/useSearchCategories";
-import { useSearchProducts } from "../hooks/useSearchProducts";
+import { useSearch } from "../hooks/useSearch";
 
 const Search: React.FC = () => {
-  const [inputValue, changeHandler] = useInput();
+  const [inputValue, changeHandler, clear] = useInput();
 
-  const { categoriesData, categoriesError, categoriesIsLoading } =
-    useSearchCategories(inputValue);
-
-  const { productsData, productsError, productsIsLoading } =
-    useSearchProducts(inputValue);
+  const { data, isLoading, isError } = useSearch(inputValue);
 
   return (
     <div>
-      <input type="text" value={inputValue} onChange={changeHandler} />
+      <div style={{ display: "flex" }}>
+        <input type="text" value={inputValue} onChange={changeHandler} />
+        <button onClick={clear}>X</button>
+      </div>
 
       {inputValue && (
         <div style={{ position: "absolute", backgroundColor: "gray" }}>
           <div>Категории</div>
-          {categoriesIsLoading ? (
+          {isLoading ? (
             <div>Загрузка...</div>
           ) : (
             <ul>
-              {!categoriesError &&
-                categoriesData?.map((elem, index) => (
+              {!isError &&
+                data?.categories?.map((elem, index) => (
                   <li key={index}>
                     <Link to={`/category/${elem.id}`}>{elem.name}</Link>
                   </li>
@@ -34,12 +32,12 @@ const Search: React.FC = () => {
           )}
 
           <div>Товары</div>
-          {productsIsLoading ? (
+          {isLoading ? (
             <div>Загрузка...</div>
           ) : (
             <ul>
-              {!productsError &&
-                productsData?.map((elem, index) => (
+              {!isError &&
+                data?.products?.map((elem, index) => (
                   <li key={index}>
                     <Link to={`/product/${elem.id}`}>{elem.name}</Link>
                   </li>
