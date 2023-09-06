@@ -1,13 +1,15 @@
-import React from 'react';
-import { Search } from '../Search';
+import React from "react";
+import { Search } from "../Search";
+import { Assistant } from "../Assistant";
 
 const Navbar: React.FC = () => {
   return (
-    <div style={{display: 'flex'}}>
+    <div style={{ display: "flex" }}>
       <div>Название сайта</div>
-      <Search/>
+      <Search />
       <div>Корзина</div>
       <div>Профиль</div>
+      <Assistant />
     </div>
   );
 };
