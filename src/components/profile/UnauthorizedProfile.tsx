@@ -1,4 +1,5 @@
 import React from "react";
+import { useModal } from "../../hooks/useModal";
 
 interface UnauthorizedProfileProps {}
 
@@ -11,24 +12,7 @@ const UnauthorizedProfile: React.FC<UnauthorizedProfileProps> = () => {
 
   return (
     <div>
-      <button ref={buttonRef} onClick={() => setIsOpen(true)}>
-        Профиль
-      </button>
-      {isOpen && (
-        <div
-          ref={modalRef}
-          style={{ position: "absolute", backgroundColor: "gray" }}
-        >
-          <button
-            onClick={() => {
-              setToken && setToken("");
-              setIsOpen(false);
-            }}
-          >
-            Выход
-          </button>
-        </div>
-      )}
+      
     </div>
   );
 };

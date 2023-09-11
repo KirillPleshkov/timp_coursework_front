@@ -5,6 +5,7 @@ type TypeProduct = {
   activeSubstance: string;
   maker: string;
   description: string;
+  price: number;
 };
 
 export type { TypeProduct };

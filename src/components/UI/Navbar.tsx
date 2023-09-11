@@ -2,6 +2,7 @@ import React from "react";
 import { Search } from "../Search";
 import { Assistant } from "../Assistant";
 import { Category } from "../Category";
+import Profile from "../profile/Profile";
 
 const Navbar: React.FC = () => {
   return (
@@ -10,7 +11,7 @@ const Navbar: React.FC = () => {
       <Category />
       <Search />
       <div>Корзина</div>
-      <div>Профиль</div>
+      <Profile />
       <Assistant />
     </div>
   );
