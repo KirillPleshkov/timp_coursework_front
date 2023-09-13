@@ -111,7 +111,7 @@ const AuthorizationContext: React.FC<AuthorizationContextProps> = ({
               <div>Почта</div>
               <input name="email" />
               <div>Пароль</div>
-              <input name="password" />
+              <input type="password" name="password" />
               <div>{error}</div>
               <button>Отправить</button>
               <div onClick={() => setIsLogin(false)}>Регистрация</div>
@@ -139,7 +139,7 @@ const AuthorizationContext: React.FC<AuthorizationContextProps> = ({
               <div>Почта</div>
               <input name="email" />
               <div>Пароль</div>
-              <input name="password" />
+              <input type="password" name="password" />
               <div>{error}</div>
               <button>Отправить</button>
               <div onClick={() => setIsLogin(true)}>Авторизация</div>
