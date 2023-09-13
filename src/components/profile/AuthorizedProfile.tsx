@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useModal } from "../../hooks/useModal";
+import { useNavigate } from "react-router-dom";
 
 interface AuthorizedProfileProps {
   user: { id: number; name: string };
@@ -10,10 +11,20 @@ const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
   user,
   setToken,
 }) => {
-  const { isOpen, setIsOpen, modalRef, buttonRef } = useModal<
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const navigate = useNavigate();
+
+  const { isOpen, setIsOpen, modalRef, setButtonRef } = useModal<
     HTMLDivElement,
     HTMLButtonElement
   >();
+
+  useEffect(() => {
+    if (buttonRef) {
+      setButtonRef(buttonRef);
+    }
+  }, [buttonRef]);
 
   return (
     <div>
@@ -29,6 +40,7 @@ const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
             onClick={() => {
               setToken && setToken("");
               setIsOpen(false);
+              navigate("/");
             }}
           >
             Выход

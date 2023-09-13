@@ -6,8 +6,10 @@ type TypeSymptom = {
   products: TypeProduct[];
 };
 
-const fetchSymptom = (id?: number | string) => {
-  return axios.get<TypeSymptom>(`/symptom/${id}`);
+const fetchSymptom = (token: string | null, id?: number | string) => {
+  return axios.get<TypeSymptom>(`/symptom/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export { fetchSymptom };

@@ -1,17 +1,42 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useRef } from "react";
+import { Link, useParams } from "react-router-dom";
 import { Navbar } from "../components/UI/Navbar";
 import { useQuery } from "@tanstack/react-query";
 import { fetchCategory } from "../api/fetchCategory";
+import { authorizationContext } from "../context/AuthorizationContext";
+import { tokenContext } from "../context/TokenContext";
+import { fetchBasketCreate } from "../api/fetchBasketCreate";
 
 const CategoryPage: React.FC = () => {
   const { categoryId } = useParams();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["category", categoryId],
-    queryFn: () => fetchCategory(categoryId),
+  const { user, token } = useContext(tokenContext);
+
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["category", categoryId, token],
+    queryFn: () => fetchCategory(token, categoryId),
     select: ({ data }) => data,
   });
+
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const { clickHandler, setButtonRef } = useContext(authorizationContext);
+
+  useEffect(() => {
+    if (buttonRef) {
+      setButtonRef(buttonRef);
+    }
+  }, [buttonRef]);
+
+  const toBasketHandler = (productId: number) => {
+    if (user && token) {
+      fetchBasketCreate({ productId }, token).then(() => {
+        refetch();
+      });
+    } else {
+      clickHandler();
+    }
+  };
 
   return (
     <div>
@@ -36,9 +61,22 @@ const CategoryPage: React.FC = () => {
               }}
               key={index}
             >
-              <img src={elem.imageUrl} height={90} />
-              <div>{elem.name}</div>
-              <button>В корзину</button>
+              <Link to={`/product/${elem.id}`}>
+                <img src={elem.imageUrl} height={90} />
+              </Link>
+              <Link to={`/product/${elem.id}`}>
+                <div>{elem.name}</div>
+              </Link>
+              {elem.isBasket === true ? (
+                <div>Товар в корзине</div>
+              ) : (
+                <button
+                  ref={buttonRef}
+                  onClick={() => toBasketHandler(elem.id)}
+                >
+                  В корзину
+                </button>
+              )}
             </div>
           ))}
         </>

@@ -9,7 +9,7 @@ const Profile: React.FC = () => {
   if (user) {
     return <AuthorizedProfile user={user} setToken={setToken} />;
   } else {
-    return <UnauthorizedProfile setToken={setToken}/>;
+    return <UnauthorizedProfile />;
   }
 };
 

@@ -21,8 +21,12 @@ const Assistant: React.FC = () => {
 
     let symptom: string;
 
+    const titleCase = (str: string) => {
+      return str[0].toUpperCase() + str.slice(1).toLowerCase();
+    };
+
     if (inputRef.current) {
-      symptom = inputRef.current.value;
+      symptom = titleCase(inputRef.current.value);
       inputRef.current.value = "";
     } else {
       symptom = "";
@@ -53,7 +57,7 @@ const Assistant: React.FC = () => {
       {isVisible ? (
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             right: 10,
             bottom: 10,
             backgroundColor: "grey",
@@ -82,7 +86,12 @@ const Assistant: React.FC = () => {
                   <div>
                     Для лечения данного симптома найдены лекарства для их
                     просмотра перейдите по{" "}
-                    <Link to={`/symptom/${elem.request.id}`}>ссылке</Link>
+                    <Link
+                      to={`/symptom/${elem.request.id}`}
+                      onClick={clearAssistant}
+                    >
+                      ссылке
+                    </Link>
                   </div>
                 )}
               </div>
@@ -96,7 +105,7 @@ const Assistant: React.FC = () => {
       ) : (
         <div
           style={{
-            position: "absolute",
+            position: "fixed",
             right: 10,
             bottom: 10,
             backgroundColor: "green",

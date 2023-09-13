@@ -6,8 +6,10 @@ type TypeCategory = {
   products: TypeProduct[];
 };
 
-const fetchCategory = (id?: number | string) => {
-  return axios.get<TypeCategory>(`/category/${id}`);
+const fetchCategory = (token: string | null, id?: number | string) => {
+  return axios.get<TypeCategory>(`/category/${id}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };
 
 export { fetchCategory };

@@ -17,32 +17,42 @@ const Search: React.FC = () => {
 
       {inputValue && (
         <div style={{ position: "absolute", backgroundColor: "gray" }}>
-          <div>Категории</div>
-          {isLoading ? (
-            <div>Загрузка...</div>
+          {data?.categories.length === 0 && data.products.length === 0 ? (
+            <div>Нет результатов</div>
           ) : (
-            <ul>
-              {!isError &&
-                data?.categories?.map((elem, index) => (
-                  <li key={index}>
-                    <Link to={`/category/${elem.id}`}>{elem.name}</Link>
-                  </li>
-                ))}
-            </ul>
-          )}
+            <>
+              <div>Категории</div>
+              {isLoading ? (
+                <div>Загрузка...</div>
+              ) : (
+                <ul>
+                  {!isError &&
+                    data?.categories?.map((elem, index) => (
+                      <li key={index}>
+                        <Link to={`/category/${elem.id}`} onClick={clear}>
+                          {elem.name}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              )}
 
-          <div>Товары</div>
-          {isLoading ? (
-            <div>Загрузка...</div>
-          ) : (
-            <ul>
-              {!isError &&
-                data?.products?.map((elem, index) => (
-                  <li key={index}>
-                    <Link to={`/product/${elem.id}`}>{elem.name}</Link>
-                  </li>
-                ))}
-            </ul>
+              <div>Товары</div>
+              {isLoading ? (
+                <div>Загрузка...</div>
+              ) : (
+                <ul>
+                  {!isError &&
+                    data?.products?.map((elem, index) => (
+                      <li key={index}>
+                        <Link to={`/product/${elem.id}`} onClick={clear}>
+                          {elem.name}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              )}
+            </>
           )}
         </div>
       )}

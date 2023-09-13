@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useCategoriesName } from "../hooks/useCategoriesName";
 import { Link } from "react-router-dom";
 import { useModal } from "../hooks/useModal";
@@ -6,10 +6,18 @@ import { useModal } from "../hooks/useModal";
 const Category: React.FC = () => {
   const { data, isLoading } = useCategoriesName();
 
-  const { isOpen, setIsOpen, modalRef, buttonRef } = useModal<
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const { isOpen, setIsOpen, modalRef, setButtonRef } = useModal<
     HTMLDivElement,
     HTMLButtonElement
   >();
+
+  useEffect(() => {
+    if (buttonRef) {
+      setButtonRef(buttonRef);
+    }
+  }, [buttonRef]);
 
   return (
     <div>
@@ -25,7 +33,12 @@ const Category: React.FC = () => {
               <ul>
                 {data?.map((elem, index) => (
                   <li key={index}>
-                    <Link to={`/category/${elem.id}`}>{elem.name}</Link>
+                    <Link
+                      to={`/category/${elem.id}`}
+                      onClick={() => setIsOpen((prev) => !prev)}
+                    >
+                      {elem.name}
+                    </Link>
                   </li>
                 ))}
               </ul>

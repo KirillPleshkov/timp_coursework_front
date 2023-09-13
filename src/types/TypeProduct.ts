@@ -6,6 +6,11 @@ type TypeProduct = {
   maker: string;
   description: string;
   price: number;
+  isBasket?: boolean;
+  indicationsForUse: string;
+  contraindications: string;
+  applicationMethod: string;
+  shelfLife: string;
 };
 
 export type { TypeProduct };
