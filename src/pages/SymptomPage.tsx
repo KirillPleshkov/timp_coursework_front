@@ -6,7 +6,7 @@ import { Navbar } from "../components/UI/Navbar";
 import { tokenContext } from "../context/TokenContext";
 import { authorizationContext } from "../context/AuthorizationContext";
 import { fetchBasketCreate } from "../api/fetchBasketCreate";
-
+import './style_basket.css';
 const SymptomPage: React.FC = () => {
   const { symptomId } = useParams();
 
@@ -69,9 +69,9 @@ const SymptomPage: React.FC = () => {
               </Link>
 
               {elem.isBasket === true ? (
-                <div>Товар в корзине</div>
+                <div className="text_basket">Товар в корзине</div>
               ) : (
-                <button
+                <button className="btn_basket"
                   ref={buttonRef}
                   onClick={() => toBasketHandler(elem.id)}
                 >

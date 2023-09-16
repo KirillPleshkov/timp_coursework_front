@@ -11,6 +11,7 @@ import { fetchLogin } from "../api/fetchLogin";
 import { AxiosError } from "axios";
 import { fetchRegistration } from "../api/fetchRegistration";
 import { tokenContext } from "./TokenContext";
+import "./auth_style.css";
 
 export const authorizationContext = createContext<{
   isOpen: boolean;
@@ -95,54 +96,39 @@ const AuthorizationContext: React.FC<AuthorizationContextProps> = ({
     >
       {children}
       {isOpen && isLogin && (
-        <div
-          ref={modalRef}
-          style={{
-            position: "fixed",
-            backgroundColor: "gray",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
-        >
+        <div className="auth_form" ref={modalRef} >
           <form onSubmit={submitLoginHandler}>
-            <div>
-              <div>Авторизация</div>
+            <div className="auth_form" >
+              <div className="text_title">Авторизация</div>
               <div>Почта</div>
-              <input name="email" />
+              <input className="style_input" name="email" />
               <div>Пароль</div>
-              <input type="password" name="password" />
-              <div>{error}</div>
-              <button>Отправить</button>
-              <div onClick={() => setIsLogin(false)}>Регистрация</div>
+              <input className="style_input" type="password" name="password" />
+              <div className="text_error">{error}</div>
+              <button className="btn_send">Отправить</button>
+              <div className="text_article" onClick={() => setIsLogin(false)}>У вас нет аккаунта?</div>
             </div>
           </form>
         </div>
       )}
 
       {isOpen && !isLogin && (
-        <div
+        <div className="auth_form"
           ref={modalRef}
-          style={{
-            position: "fixed",
-            backgroundColor: "gray",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-          }}
+
         >
           <form onSubmit={submitRegistrationHandler}>
             <div>
-              <div>Регистрация</div>
+              <div className="text_title">Регистрация</div>
               <div>Имя</div>
-              <input name="namee" />
+              <input className="style_input" name="namee" />
               <div>Почта</div>
-              <input name="email" />
+              <input className="style_input" name="email" />
               <div>Пароль</div>
-              <input type="password" name="password" />
-              <div>{error}</div>
-              <button>Отправить</button>
-              <div onClick={() => setIsLogin(true)}>Авторизация</div>
+              <input  className="style_input" type="password" name="password" />
+              <div className="text_error">{error}</div>
+              <button className="btn_send">Отправить</button>
+              <div className="text_article" onClick={() => setIsLogin(true)}>Авторизация</div>
             </div>
           </form>
         </div>

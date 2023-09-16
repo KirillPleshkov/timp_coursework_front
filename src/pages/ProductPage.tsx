@@ -6,7 +6,8 @@ import { fetchProduct } from "../api/fetchProduct";
 import { tokenContext } from "../context/TokenContext";
 import { fetchBasketCreate } from "../api/fetchBasketCreate";
 import { authorizationContext } from "../context/AuthorizationContext";
-
+import './style_basket.css';
+import "./style_productage.css";
 const ProductPage: React.FC = () => {
   const { productId } = useParams();
 
@@ -50,40 +51,43 @@ const ProductPage: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="form_product">
       <Navbar />
-      <div>{data?.name}</div>
+      <div className="text_data_name">{data?.name}</div>
       <div style={{ display: "flex" }}>
-        <img src={data?.imageUrl} style={{ width: 200 }} />
+        <img className="img_product" src={data?.imageUrl} style={{ width: 200 }} />
         <div>
-          <div>Действующее вещество - {data?.activeSubstance}</div>
-          <div>Производитель - {data?.maker}</div>
+          <div className="text_disc" ><b>Действующее вещество </b> - {data?.activeSubstance}</div>
+          <div className="text_disc"><b>Производитель </b>- {data?.maker}</div>
+          <div className="text_disc"><b>Цена:</b> {data?.price}₽</div>
+
+          <div>
+            {data?.isBasket === true ? (
+                <div className={"thing_in_basket_text" }>В корзине</div>
+            ) : (
+                <button className={"button_basket"}
+                    ref={buttonRef}
+                    onClick={() => data && toBasketHandler(data?.id)}
+                >
+                  В корзину
+                </button>
+            )}
+          </div>
+
         </div>
-        <div>
-          <div>Цена - {data?.price}</div>
-          {data?.isBasket === true ? (
-            <div>Товар в корзине</div>
-          ) : (
-            <button
-              ref={buttonRef}
-              onClick={() => data && toBasketHandler(data?.id)}
-            >
-              В корзину
-            </button>
-          )}
-        </div>
+
       </div>
-      <div>
+      <div className="text_body_all">
         <h1>Описание</h1>
-        <div>{data?.description}</div>
+        <div className="text_body_product">{data?.description}</div>
         <h1>Показания к применению</h1>
-        <div>{data?.indicationsForUse}</div>
+        <div className="text_body_product">{data?.indicationsForUse}</div>
         <h1>Противопоказания</h1>
-        <div>{data?.contraindications}</div>
+        <div className="text_body_product">{data?.contraindications}</div>
         <h1>Способ применения и дозы</h1>
-        <div>{data?.applicationMethod}</div>
+        <div className="text_body_product">{data?.applicationMethod}</div>
         <h1>Срок годности</h1>
-        <div>{data?.shelfLife}</div>
+        <div className="text_body_product"> {data?.shelfLife}</div>
       </div>
     </div>
   );

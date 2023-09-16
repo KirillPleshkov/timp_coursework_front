@@ -2,7 +2,7 @@ import React from "react";
 import { useInput } from "../hooks/useInput";
 import { Link } from "react-router-dom";
 import { useSearch } from "../hooks/useSearch";
-
+import "./styles/search.css";
 const Search: React.FC = () => {
   const [inputValue, changeHandler, clear] = useInput();
 
@@ -12,20 +12,20 @@ const Search: React.FC = () => {
     <div>
       <div style={{ display: "flex" }}>
         <input type="text" value={inputValue} onChange={changeHandler} />
-        <button onClick={clear}>X</button>
+        <button className="clear" onClick={clear}>Очистить</button>
       </div>
 
       {inputValue && (
-        <div style={{ position: "absolute", backgroundColor: "gray" }}>
+        <div className="dropdown">
           {data?.categories.length === 0 && data.products.length === 0 ? (
-            <div>Нет результатов</div>
+            <div >Нет результатов</div>
           ) : (
-            <>
-              <div>Категории</div>
+            <div>
+              <div className="title_category">Категории</div>
               {isLoading ? (
                 <div>Загрузка...</div>
               ) : (
-                <ul>
+                <ul className="body_text">
                   {!isError &&
                     data?.categories?.map((elem, index) => (
                       <li key={index}>
@@ -37,11 +37,11 @@ const Search: React.FC = () => {
                 </ul>
               )}
 
-              <div>Товары</div>
+              <div className="title_category">Товары</div>
               {isLoading ? (
                 <div>Загрузка...</div>
               ) : (
-                <ul>
+                <ul className="body_text">
                   {!isError &&
                     data?.products?.map((elem, index) => (
                       <li key={index}>
@@ -52,7 +52,7 @@ const Search: React.FC = () => {
                     ))}
                 </ul>
               )}
-            </>
+            </div>
           )}
         </div>
       )}

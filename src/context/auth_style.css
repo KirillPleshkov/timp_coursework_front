@@ -1,0 +1,62 @@
+.auth_form {
+    position: fixed;
+    background-color: #F7B988;
+    opacity: 90%;
+    /*border: 3px #E3E685;*/
+    border-radius: 15px;
+    padding: 15px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    min-width: 380px;
+    min-height: 350px;
+}
+
+.text_title {
+    color: navy;
+    align-items: center;
+    justify-content: center;
+    margin-left: 87px;
+    font-weight: bold;
+    font-size: 35px;
+    font-family: "Times New Roman";
+    margin-bottom: 15px;
+}
+
+.style_input {
+    width: 350px;
+    height: 30px;
+    margin-left: 15px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+
+}
+.btn_send {
+    background-color: #E3E685;
+    margin-left: 70px;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #E3E685;
+    border-radius: 2px;
+    width: 250px;
+    height: 35px;
+    box-shadow: 0 0 0 60px rgba(0,0,0,0) inset, .1em .1em .2em #D8B3D5;
+    font-size: 18px;
+    color: black;
+    font-family: "Times New Roman";
+    font-weight: normal;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.text_article {
+    text-decoration: underline;
+    font-size: 20px;
+    font-weight: normal;
+}
+.text_error {
+    color: red;
+    font-size: 19px;
+}

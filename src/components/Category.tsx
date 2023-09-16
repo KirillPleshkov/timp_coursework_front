@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { useCategoriesName } from "../hooks/useCategoriesName";
 import { Link } from "react-router-dom";
 import { useModal } from "../hooks/useModal";
+import "./styles/category.css";
 
 const Category: React.FC = () => {
   const { data, isLoading } = useCategoriesName();
@@ -21,12 +22,12 @@ const Category: React.FC = () => {
 
   return (
     <div>
-      <button ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
+      <button className="btn_category" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
         Категории
       </button>
-      <div ref={modalRef}>
+      <div  ref={modalRef}>
         {isOpen && (
-          <div style={{ position: "absolute", backgroundColor: "gray" }}>
+          <div className="category_dropdown">
             {isLoading ? (
               <div>Загрузка...</div>
             ) : (

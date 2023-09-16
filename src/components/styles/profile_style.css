@@ -1,0 +1,33 @@
+.profile {
+    display: inline-block;
+    float: right;
+    margin-right: 15px;
+    /*margin-left: 93%;*/
+    background-color: #D8B3D5;
+    box-sizing: border-box;
+    outline: none;
+    border: 1px solid #D8B3D5;
+    border-radius: 10px;
+    font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgb(65 132 144 / 10%), 0 1px 3px rgb(0 0 0 / 8%);
+    cursor: pointer;
+}
+.exit_profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*justify-content: center;*/
+    position: absolute;
+    margin-top: 29px;
+    margin-left: 1340px;
+    float: right;
+    min-height: 50px;
+    min-width: 100px;
+    background-color: #ffffff;
+    border: 5px solid #D8B3D5;
+    border-radius: 10px;
+    padding-right: 15px;
+    font-family: "Times New Roman";
+    font-size: 18px;
+}

@@ -27,7 +27,7 @@ const BasketButton: React.FC = () => {
   };
 
   return (
-    <button ref={buttonRef} onClick={toBasketHandler}>
+    <button className="btn_basket" ref={buttonRef} onClick={toBasketHandler}>
       Корзина
     </button>
   );

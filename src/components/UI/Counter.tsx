@@ -1,6 +1,7 @@
 import React from "react";
 import { fetchBasketUpdate } from "../../api/fetchBasketUpdate";
 import { fetchBasketDelete } from "../../api/fetchBasketDelete";
+import "./styles/header.css";
 
 interface CounterProps {
   id: number;
@@ -25,14 +26,15 @@ const Counter: React.FC<CounterProps> = ({ count, id, token, updatePage }) => {
   };
 
   return (
-    <div>
-      <div style={{ display: "flex" }}>
-        <button onClick={() => buttonUpdateHandler(count - 1)}>-</button>
-        <div>{count}</div>
-        <button onClick={() => buttonUpdateHandler(count + 1)}>+</button>
+
+      <div className="btn_counter">
+        <button className="count" onClick={() => buttonUpdateHandler(count - 1)}>-</button>
+        <div className="count_text">{count}</div>
+        <button className="count" onClick={() => buttonUpdateHandler(count + 1)}>+</button>
+        <button className="count_close" onClick={buttonDeleteHandler}>X</button>
       </div>
-      <button onClick={buttonDeleteHandler}>X</button>
-    </div>
+
+
   );
 };
 

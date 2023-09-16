@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { authorizationContext } from "../../context/AuthorizationContext";
-
+import "../styles/profile_style.css";
 const UnauthorizedProfile: React.FC = () => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -14,7 +14,7 @@ const UnauthorizedProfile: React.FC = () => {
 
   return (
     <div>
-      <button ref={buttonRef} onClick={clickHandler}>
+      <button className="profile" ref={buttonRef} onClick={clickHandler}>
         Профиль
       </button>
     </div>

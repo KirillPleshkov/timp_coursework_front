@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useModal } from "../../hooks/useModal";
 import { useNavigate } from "react-router-dom";
+import "../styles/profile_style.css";
 
 interface AuthorizedProfileProps {
   user: { id: number; name: string };
@@ -28,7 +29,7 @@ const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
 
   return (
     <div>
-      <button ref={buttonRef} onClick={() => setIsOpen(true)}>
+      <button className="profile" ref={buttonRef} onClick={() => setIsOpen(true)}>
         {user?.name}
       </button>
       {isOpen && (
@@ -36,7 +37,7 @@ const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
           ref={modalRef}
           style={{ position: "absolute", backgroundColor: "gray" }}
         >
-          <button
+          <button className="exit_profile"
             onClick={() => {
               setToken && setToken("");
               setIsOpen(false);

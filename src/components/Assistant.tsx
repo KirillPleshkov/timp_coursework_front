@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 import { TypeAssistant, fetchAssistant } from "../api/fetchAssistant";
 import { Link } from "react-router-dom";
+import "./styles/assistant.css";
+// import SendImage from "./UI/PhotoRoom_20230916_021219.jpg" ;
 
 type TypeMessageHistory = {
   response: string;
@@ -55,22 +57,13 @@ const Assistant: React.FC = () => {
   return (
     <>
       {isVisible ? (
-        <div
-          style={{
-            position: "fixed",
-            right: 10,
-            bottom: 10,
-            backgroundColor: "grey",
-            width: 350,
-            height: 400,
-          }}
-        >
-          <div
+        <div className="btn_accictent_window">
+          <div className="form_assistant"
             style={{
               height: 350,
             }}
           >
-            <button style={{ marginLeft: "93%" }} onClick={clearAssistant}>
+            <button className="bnt_clearAccictent"  onClick={clearAssistant}>
               X
             </button>
             <div style={{ left: 10, position: "relative" }}>
@@ -79,11 +72,11 @@ const Assistant: React.FC = () => {
 
             {messageHistory.map((elem, index) => (
               <div key={index}>
-                <div>{elem.response}</div>
+                <div className="respons_message" >{elem.response}</div>
                 {elem.request === "error" ? (
-                  <div>Данный симптом не найден</div>
+                  <div style={{ left: 10, position: "relative" }}>Данный симптом не найден</div>
                 ) : (
-                  <div>
+                  <div style={{ left: 10, position: "relative" }}>
                     Для лечения данного симптома найдены лекарства для их
                     просмотра перейдите по{" "}
                     <Link
@@ -97,21 +90,14 @@ const Assistant: React.FC = () => {
               </div>
             ))}
           </div>
-          <form onSubmit={submitHandler} style={{ display: "flex" }}>
-            <input ref={inputRef} />
-            <button type="submit">О</button>
+          <form className="form_message" onSubmit={submitHandler} style={{ display: "flex" }}>
+            <input className="input_message" ref={inputRef} />
+            {/*<img src={SendImage}/>*/}
+            <button className="btn_message" type="submit">Отправить</button>
           </form>
         </div>
       ) : (
-        <div
-          style={{
-            position: "fixed",
-            right: 10,
-            bottom: 10,
-            backgroundColor: "green",
-          }}
-          onClick={() => setIsVisible(true)}
-        >
+        <div className="assistant" onClick={() => setIsVisible(true)}>
           Ассистент
         </div>
       )}

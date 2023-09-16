@@ -4,7 +4,7 @@ import { tokenContext } from "../context/TokenContext";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBasketGetAll } from "../api/fetchBasketGetAll";
 import Counter from "../components/UI/Counter";
-
+import './style_basket.css';
 const BasketPage: React.FC = () => {
   const { user, token } = useContext(tokenContext);
 
@@ -26,7 +26,7 @@ const BasketPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="btn_basket">
         <Navbar />
         <h1>Корзина</h1>
         <div>Загрузка...</div>
@@ -37,7 +37,7 @@ const BasketPage: React.FC = () => {
   return (
     <div>
       <Navbar />
-      <h1>Корзина</h1>
+      <h1 className="title_journal">Корзина</h1>
 
       {data?.length === 0 ? (
         <div>Корзина пуста</div>
@@ -49,22 +49,13 @@ const BasketPage: React.FC = () => {
             }}
           >
             {data?.map((elem, index) => (
-              <div
-                style={{
-                  display: "flex",
-                  height: 100,
-                  width: "80%",
-                  borderWidth: 1,
-                  borderColor: "black",
-                  border: "solid",
-                  marginBottom: 10,
-                }}
+              <div className="journal_entry"
                 key={index}
               >
-                <img src={elem.product.imageUrl} height={90} />
-                <div>{elem.product.name}</div>
+                  <div className="size_image"> <img className="img_journal" src={elem.product.imageUrl} height={90} /> </div>
+                <div className="product_elem">{elem.product.name}</div>
                 <div>
-                  <div>Цена: {elem.product.price}</div>
+                  <div className="price_basket" >Цена: {elem.product.price}₽</div>
                   <Counter
                     count={elem.count}
                     id={elem.id}
@@ -75,9 +66,9 @@ const BasketPage: React.FC = () => {
               </div>
             ))}
           </div>
-          <div>
-            <div>Цена: {fullCost}</div>
-            <button>Купить</button>
+          <div className="price_send_together">
+            <div className="all_price">Цена: {fullCost}₽</div>
+            <button className="btn_basket_all">Купить</button>
           </div>
         </div>
       )}
