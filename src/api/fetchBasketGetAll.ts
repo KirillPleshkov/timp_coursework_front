@@ -8,7 +8,7 @@ type TypeBasketGetAll = {
 };
 
 const fetchBasketGetAll = (token: string | null) => {
-  return axios.get<TypeBasketGetAll[]>("/basket/", {
+  return axios.get<TypeBasketGetAll[]>("http://localhost:3001/basket/", {
     headers: { Authorization: `Bearer ${token}` },
   });
 };

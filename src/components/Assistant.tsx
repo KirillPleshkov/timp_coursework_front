@@ -76,7 +76,7 @@ const Assistant: React.FC = () => {
                 {elem.request === "error" ? (
                   <div style={{ left: 10, position: "relative" }}>Данный симптом не найден</div>
                 ) : (
-                  <div style={{ left: 10, position: "relative" }}>
+                  <div style={{ left: 10, position: "relative", width: 280 }}>
                     Для лечения данного симптома найдены лекарства для их
                     просмотра перейдите по{" "}
                     <Link

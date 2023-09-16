@@ -6,7 +6,7 @@ type TypeCategoriesName = {
 };
 
 const fetchCategoriesName = () => {
-  return axios.get<TypeCategoriesName[]>("/category/");
+  return axios.get<TypeCategoriesName[]>("http://localhost:3001/category/");
 };
 
 export { fetchCategoriesName };

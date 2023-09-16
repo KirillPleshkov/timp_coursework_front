@@ -11,7 +11,7 @@ type TypeResponse = {
 };
 
 const fetchSearch = (searchQuery?: string) => {
-  return axios.get<TypeResponse>(`/search?search=${searchQuery}`);
+  return axios.get<TypeResponse>(`http://localhost:3001/search?search=${searchQuery}`);
 };
 
 export { fetchSearch };

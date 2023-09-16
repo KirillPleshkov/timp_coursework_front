@@ -6,7 +6,7 @@ const fetchRegistration = (data: {
   password: string;
   name: string;
 }) => {
-  return axios.post<TypeToken>(`/auth/registration`, data);
+  return axios.post<TypeToken>(`http://localhost:3001/auth/registration`, data);
 };
 
 export { fetchRegistration };

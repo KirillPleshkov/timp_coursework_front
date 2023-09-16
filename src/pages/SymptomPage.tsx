@@ -47,31 +47,27 @@ const SymptomPage: React.FC = () => {
         <div>Товары не найдены!!!</div>
       ) : (
         <>
-          <div>{data.name}</div>
+          <div className="text_data_name">{data.name}</div>
           {data.products.map((elem, index) => (
-            <div
-              style={{
-                display: "flex",
-                height: 100,
-                width: "80%",
-                borderWidth: 1,
-                borderColor: "black",
-                border: "solid",
-                marginBottom: 10,
-              }}
+            <div className={"journal_entry" + " " + "journal_entry_image" }
               key={index}
             >
-              <Link to={`/product/${elem.id}`}>
-                <img src={elem.imageUrl} height={90} />
-              </Link>
-              <Link to={`/product/${elem.id}`}>
-                <div>{elem.name}</div>
-              </Link>
+        
+              <div className="size_image">
+                <Link to={`/product/${elem.id}`}>
+                  <img className="img_journal" src={elem.imageUrl} height={90} />
+                </Link>
+              </div>
+              <div className="product_elem">
+                <Link to={`/product/${elem.id}`}>
+                  <div>{elem.name}</div>
+                </Link>
+              </div>
 
               {elem.isBasket === true ? (
-                <div className="text_basket">Товар в корзине</div>
+                <div className="thing_in_basket_text">В корзине</div>
               ) : (
-                <button className="btn_basket"
+                <button className="button_basket"
                   ref={buttonRef}
                   onClick={() => toBasketHandler(elem.id)}
                 >

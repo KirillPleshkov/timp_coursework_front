@@ -30,7 +30,6 @@
     margin-left: 15px;
     margin-top: 5px;
     margin-bottom: 15px;
-
 }
 .btn_send {
     background-color: #E3E685;
@@ -55,6 +54,7 @@
     text-decoration: underline;
     font-size: 20px;
     font-weight: normal;
+    cursor: pointer;
 }
 .text_error {
     color: red;

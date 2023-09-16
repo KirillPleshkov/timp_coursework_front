@@ -7,7 +7,7 @@ type TypeCategory = {
 };
 
 const fetchCategory = (token: string | null, id?: number | string) => {
-  return axios.get<TypeCategory>(`/category/${id}`, {
+  return axios.get<TypeCategory>(`http://localhost:3001/category/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };

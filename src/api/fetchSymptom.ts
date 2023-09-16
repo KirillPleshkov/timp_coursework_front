@@ -7,7 +7,7 @@ type TypeSymptom = {
 };
 
 const fetchSymptom = (token: string | null, id?: number | string) => {
-  return axios.get<TypeSymptom>(`/symptom/${id}`, {
+  return axios.get<TypeSymptom>(`http://localhost:3001/symptom/${id}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };

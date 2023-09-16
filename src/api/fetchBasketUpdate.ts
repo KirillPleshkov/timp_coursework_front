@@ -5,7 +5,7 @@ const fetchBasketUpdate = (
   data: { count: number },
   token: string | null
 ) => {
-  return axios.patch(`/basket/${id}`, data, {
+  return axios.patch(`http://localhost:3001/basket/${id}`, data, {
     headers: { Authorization: `Bearer ${token}` },
   });
 };

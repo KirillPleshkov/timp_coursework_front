@@ -121,7 +121,7 @@ const AuthorizationContext: React.FC<AuthorizationContextProps> = ({
             <div>
               <div className="text_title">Регистрация</div>
               <div>Имя</div>
-              <input className="style_input" name="namee" />
+              <input type="text" className="style_input" name="namee" />
               <div>Почта</div>
               <input className="style_input" name="email" />
               <div>Пароль</div>

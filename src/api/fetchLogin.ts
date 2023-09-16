@@ -5,7 +5,7 @@ type TypeToken = {
 };
 
 const fetchLogin = (data: { email: string; password: string }) => {
-  return axios.post<TypeToken>(`/auth/login`, data);
+  return axios.post<TypeToken>(`http://localhost:3001/auth/login`, data);
 };
 
 export { fetchLogin };

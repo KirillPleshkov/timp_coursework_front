@@ -14,14 +14,8 @@
     cursor: pointer;
 }
 .exit_profile {
-    display: flex;
-    flex-direction: column;
+
     align-items: center;
-    /*justify-content: center;*/
-    position: absolute;
-    margin-top: 29px;
-    margin-left: 1340px;
-    float: right;
     min-height: 50px;
     min-width: 100px;
     background-color: #ffffff;
@@ -30,4 +24,9 @@
     padding-right: 15px;
     font-family: "Times New Roman";
     font-size: 18px;
+}
+.dropdown_exit {
+    position: fixed;
+    right: 20px;
+    top: 165px;
 }

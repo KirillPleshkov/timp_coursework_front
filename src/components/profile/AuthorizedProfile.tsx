@@ -33,9 +33,9 @@ const AuthorizedProfile: React.FC<AuthorizedProfileProps> = ({
         {user?.name}
       </button>
       {isOpen && (
-        <div
+        <div className="dropdown_exit"
           ref={modalRef}
-          style={{ position: "absolute", backgroundColor: "gray" }}
+         
         >
           <button className="exit_profile"
             onClick={() => {

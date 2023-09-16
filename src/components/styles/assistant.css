@@ -10,11 +10,13 @@
     font-weight: bold;
     margin-right: 10px;
     padding-right: -20px;
+    cursor: pointer;
 }
 .btn_accictent {
     position: fixed;
     right: 10px;
     bottom: 10px;
+    cursor: pointer;
 }
 .btn_accictent_window {
     position: fixed;
@@ -46,6 +48,7 @@
     outline: none;
     background-color: #D8B3D5;
     border: 2px solid white;
+    cursor: pointer;
 }
 
 .respons_message {
@@ -53,7 +56,7 @@
     position: relative;
     max-width: 10px;
     left: 150px;
-    background-color: white;
+  
 }
 .assistant {
     position: fixed;
@@ -66,4 +69,5 @@
     height: 40px;
     border-radius: 10px;
     font-size: 20px;
+    cursor: pointer;
 }
