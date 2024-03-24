@@ -21,6 +21,8 @@ const Assistant: React.FC = () => {
   const submitHandler: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
+    if (inputRef.current && !inputRef.current.value) return;
+
     let symptom: string;
 
     const titleCase = (str: string) => {
@@ -36,6 +38,8 @@ const Assistant: React.FC = () => {
 
     const { data } = await fetchAssistant(symptom);
 
+    console.log(data);
+
     if (typeof data === "string") {
       setMessageHistory((prev) => [
         ...prev,
@@ -44,7 +48,7 @@ const Assistant: React.FC = () => {
     } else {
       setMessageHistory((prev) => [
         ...prev,
-        { response: symptom, request: { id: data.id } },
+        { response: symptom, request: data },
       ]);
     }
   };
@@ -58,48 +62,71 @@ const Assistant: React.FC = () => {
     <>
       {isVisible ? (
         <div className="btn_accictent_window">
-          <div className="form_assistant"
+          <div
+            className="form_assistant"
             style={{
               height: 350,
             }}
           >
-            <button className="bnt_clearAccictent"  onClick={clearAssistant}>
+            <button className="bnt_clearAccictent" onClick={clearAssistant}>
               X
             </button>
-            <div style={{ left: 10, position: "relative" }}>
-              Здарова. Какая проблема?
-            </div>
-
-            {messageHistory.map((elem, index) => (
-              <div key={index}>
-                <div className="respons_message" >{elem.response}</div>
-                {elem.request === "error" ? (
-                  <div style={{ left: 10, position: "relative" }}>Данный симптом не найден</div>
-                ) : (
-                  <div style={{ left: 10, position: "relative", width: 280 }}>
-                    Для лечения данного симптома найдены лекарства для их
-                    просмотра перейдите по{" "}
-                    <Link
-                      to={`/symptom/${elem.request.id}`}
-                      onClick={clearAssistant}
-                    >
-                      ссылке
-                    </Link>
-                  </div>
-                )}
+            <div
+              style={{
+                overflowY: "auto",
+                overflowX: "hidden",
+                height: "310px",
+              }}
+            >
+              <div style={{ left: 10, position: "relative" }}>
+                Здарова. Какая проблема?
               </div>
-            ))}
+
+              {messageHistory.map((elem, index) => (
+                <div key={index}>
+                  <div className="respons_message">{elem.response}</div>
+                  {elem.request === "error" ? (
+                    <div style={{ left: 10, position: "relative" }}>
+                      Данный симптом не найден
+                    </div>
+                  ) : (
+                    <div style={{ left: 10, position: "relative", width: 280 }}>
+                      Для лечения данного симптома найдены лекарства:
+                      {elem.request.products.map((e) => (
+                        <>
+                          <p
+                            style={{ marginBlockStart: 0, marginBlockEnd: 0 }}
+                          />
+                          <Link
+                            to={`/product/${e.id}`}
+                            onClick={clearAssistant}
+                          >
+                            {e.name}
+                          </Link>
+                        </>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <form className="form_message" onSubmit={submitHandler} style={{ display: "flex" }}>
+          <form
+            className="form_message"
+            onSubmit={submitHandler}
+            style={{ display: "flex" }}
+          >
             <input className="input_message" ref={inputRef} />
             {/*<img src={SendImage}/>*/}
-            <button className="btn_message" type="submit">Отправить</button>
+            <button className="btn_message" type="submit">
+              Отправить
+            </button>
           </form>
         </div>
       ) : (
-        <div className="assistant" onClick={() => setIsVisible(true)}>
+        <button className="assistant" onClick={() => setIsVisible(true)}>
           Ассистент
-        </div>
+        </button>
       )}
     </>
   );

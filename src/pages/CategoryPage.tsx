@@ -49,10 +49,17 @@ const CategoryPage: React.FC = () => {
         <>
           <div className="text_data_name">{data.name}</div>
           {data.products.map((elem, index) => (
-            <div className={"journal_entry" + " " + "journal_entry_image" } key={index}>
+            <div
+              className={"journal_entry" + " " + "journal_entry_image"}
+              key={index}
+            >
               <div className="size_image">
                 <Link to={`/product/${elem.id}`}>
-                  <img className="img_journal" src={elem.imageUrl} height={90} />
+                  <img
+                    className="img_journal"
+                    src={elem.imageUrl}
+                    height={90}
+                  />
                 </Link>
               </div>
               <div className="product_elem">
@@ -63,14 +70,14 @@ const CategoryPage: React.FC = () => {
               {elem.isBasket === true ? (
                 <div className="thing_in_basket_text">В корзине</div>
               ) : (
-                <button className="button_basket"
+                <button
+                  className="button_basket"
                   ref={buttonRef}
                   onClick={() => toBasketHandler(elem.id)}
                 >
                   В корзину
                 </button>
               )}
-
             </div>
           ))}
         </>

@@ -22,10 +22,14 @@ const Category: React.FC = () => {
 
   return (
     <div>
-      <button className="btn_category" ref={buttonRef} onClick={() => setIsOpen((prev) => !prev)}>
+      <button
+        className="btn_category"
+        ref={buttonRef}
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
         Категории
       </button>
-      <div  ref={modalRef}>
+      <div ref={modalRef}>
         {isOpen && (
           <div className="category_dropdown">
             {isLoading ? (

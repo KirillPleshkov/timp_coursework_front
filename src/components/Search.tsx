@@ -10,15 +10,17 @@ const Search: React.FC = () => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", height: "20px", padding: "6px" }}>
         <input type="text" value={inputValue} onChange={changeHandler} />
-        <button className="clear" onClick={clear}>Очистить</button>
+        <button className="clear" onClick={clear}>
+          Очистить
+        </button>
       </div>
 
       {inputValue && (
         <div className="dropdown">
           {data?.categories.length === 0 && data.products.length === 0 ? (
-            <div >Нет результатов</div>
+            <div>Нет результатов</div>
           ) : (
             <div>
               <div className="title_category">Категории</div>
